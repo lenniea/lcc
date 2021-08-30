@@ -1,12 +1,13 @@
 # $Id$
 HOSTFILE=etc/win32.c
 TARGET=x86\win32
+BUILDDIR=build\win32
 TEMPDIR=\\temp
 A=.lib
 O=.obj
 E=.exe
 CC=cl -nologo
-CFLAGS=-DWIN32 -Zi -MLd -Fd$(BUILDDIR)^\
+CFLAGS=-DWIN32 -Zi -FS -Fd$(BUILDDIR)^\
 LD=cl -nologo
 LDFLAGS=-Zi -MLd -Fd$(BUILDDIR)^\
 TSTDIR=$(BUILDDIR)\$(TARGET)\tst
@@ -57,6 +58,7 @@ RCCOBJS=$Balloc$O \
 	$Bbytecode$O \
 	$Balpha$O \
 	$Bmips$O \
+	$Bnano$O \
 	$Bsparc$O \
 	$Bstab$O \
 	$Bx86$O \
@@ -103,6 +105,7 @@ $Bstab$O:	src/stab.c src/stab.h;	$(CC) $(CFLAGS) -c -Isrc -Fo$@ src/stab.c
 $Bdagcheck$O:	$Bdagcheck.c;	$(CC) $(CFLAGS) -c -Isrc -Fo$@ $Bdagcheck.c
 $Balpha$O:	$Balpha.c;	$(CC) $(CFLAGS) -c -Isrc -Fo$@ $Balpha.c
 $Bmips$O:	$Bmips.c;	$(CC) $(CFLAGS) -c -Isrc -Fo$@ $Bmips.c
+$Bnano$O:	$Bnano.c;	$(CC) $(CFLAGS) -c -Isrc -Fo$@ $Bnano.c
 $Bsparc$O:	$Bsparc.c;	$(CC) $(CFLAGS) -c -Isrc -Fo$@ $Bsparc.c
 $Bx86$O:	$Bx86.c;	$(CC) $(CFLAGS) -c -Isrc -Fo$@ $Bx86.c
 $Bx86linux$O:	$Bx86linux.c;	$(CC) $(CFLAGS) -c -Isrc -Fo$@ $Bx86linux.c
@@ -110,6 +113,7 @@ $Bx86linux$O:	$Bx86linux.c;	$(CC) $(CFLAGS) -c -Isrc -Fo$@ $Bx86linux.c
 $Bdagcheck.c:	$Blburg$E src/dagcheck.md; $Blburg src/dagcheck.md $@
 $Balpha.c:	$Blburg$E src/alpha.md;    $Blburg src/alpha.md    $@
 $Bmips.c:	$Blburg$E src/mips.md;     $Blburg src/mips.md     $@
+$Bnano.c:	$Blburg$E src/nano.md;     $Blburg src/nano.md     $@
 $Bsparc.c:	$Blburg$E src/sparc.md;    $Blburg src/sparc.md    $@
 $Bx86.c:	$Blburg$E src/x86.md;      $Blburg src/x86.md      $@
 $Bx86linux.c:	$Blburg$E src/x86linux.md; $Blburg src/x86linux.md $@
@@ -326,7 +330,7 @@ testclean:
 
 clean::		testclean
 		-del /q $B*$O
-		-del /q $Bdagcheck.c $Balpha.c $Bmips.c $Bx86.c $Bsparc.c $Bx86linux.c
+		-del /q $Bdagcheck.c $Balpha.c $Bmips.c $Bnano.c $Bx86.c $Bsparc.c $Bx86linux.c
 		-del /q $Brcc1$E $Brcc1$E $B1rcc$E $B2rcc$E
 		-del /q $B*.ilk
 

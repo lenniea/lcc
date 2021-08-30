@@ -3,6 +3,7 @@
 #define yy \
 xx(alpha/osf,    alphaIR) \
 xx(mips/irix,    mipsebIR) \
+xx(nano,         nanoebIR) \
 xx(sparc/sun,    sparcIR) \
 xx(sparc/solaris,solarisIR) \
 xx(x86/win32,    x86IR) \
